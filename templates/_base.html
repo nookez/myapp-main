@@ -1,31 +1,39 @@
-{% load compress %}
-{% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content=
-		"width=device-width, initial-scale=1.0">
-	<title>{% block title %}Untitled{% endblock %}</title>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Athiti&display=swap" rel="stylesheet">	
-
-	{% compress css %}
-	<link rel="stylesheet"
-		href="{% static 'src/output.css' %}">
-	{% endcompress %}
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Movie Review{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.tailwindcss.com">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<body class="bg-black text-white font-sans">
 
-<body>
-	<div class="container mx-auto px-4 py-4">
-		{% block content %}
-		{% endblock content %}
-	</div>
+    <!-- Navbar -->
+    <nav class="bg-red-600 p-4 flex justify-between items-center">
+        <div class="text-white text-3xl font-bold">
+            Movie <span class="text-black">NN</span> Review
+        </div>
+        <div class="flex space-x-4">
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="text-white">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="text-white">Login</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto p-8">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black p-4 text-center">
+        <div class="flex justify-center space-x-4">
+            <a href="#" class="text-white">Follow NN on social</a>
+        </div>
+        <button class="bg-red-600 text-white p-2 mt-4">Donate</button>
+    </footer>
 </body>
-
 </html>
