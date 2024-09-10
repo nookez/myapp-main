@@ -8,15 +8,15 @@
 
     <!-- Movie Section -->
     <div class="text-center mb-12">
-        <h1 class="text-5xl font-bold mb-4">Movie <span class="text-red-600">NN</span> review</h1>
-        <div class="relative w-64 mx-auto">
+        <h1 class="text-5xl font-bold mb-4">Movie <span class="text-red-600">NN</span> Review</h1>
+        <div class="relative w-full h-56 mx-auto flex items-center justify-center">
             <!-- Arrow Buttons -->
-            <button id="prevBtn" class="absolute left-0 top-1/2 transform -translate-y-1/2 text-white text-3xl z-10">←</button>
-            <button id="nextBtn" class="absolute right-0 top-1/2 transform -translate-y-1/2 text-white text-3xl z-10">→</button>
+            <button id="prevBtn" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-2 z-10 hover:bg-opacity-75">←</button>
+            <button id="nextBtn" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-2 z-10 hover:bg-opacity-75">→</button>
 
             <!-- Image Container with Animation -->
-            <div id="imageContainer" class="w-64 h-96 relative overflow-hidden">
-                <img id="movieImage" src="{% static 'images/PG3.png' %}" alt="Green Book" class="w-full h-full object-cover transition-all duration-500 ease-in-out">
+            <div id="imageContainer" class="w-full h-full relative overflow-hidden flex items-center justify-center">
+                <img id="movieImage" src="{% static 'images/PG3.png' %}" alt="Green Book" class="w-full h-full object-cover transition-opacity duration-1000 ease-in-out">
             </div>
         </div>
         <p class="mt-4 text-lg leading-relaxed max-w-2xl mx-auto">
@@ -27,57 +27,60 @@
     <!-- Top Pick Section -->
     <div class="mb-8">
         <h2 class="text-2xl font-bold text-red-600 mb-4">Top pick <span class="text-white">TV shows and movies just for you</span></h2>
-        <div class="flex justify-center space-x-4">
-            <img src="{% static 'images/PG3.png' %}" alt="Avatar" class="w-32">
-            <img src="{% static 'images/PG3.png' %}" alt="Avatar" class="w-32">
-            <img src="{% static 'images/PG3.png' %}" alt="Avatar" class="w-32">
-        </div>
+        <div id="topPicks" class="grid grid-cols-4 gap-4"></div>
     </div>
 
     <!-- Most Popular Celebrities Section -->
     <div class="mb-8">
         <h2 class="text-2xl font-bold text-red-600 mb-4">Most popular celebrities</h2>
-        <div class="flex justify-center space-x-6">
-            <img src="{% static 'images/PG3.png' %}" alt="Celebrity" class="w-20 h-20 rounded-full">
-            <img src="{% static 'images/PG3.png' %}" alt="Celebrity" class="w-20 h-20 rounded-full">
-            <img src="{% static 'images/PG3.png' %}" alt="Celebrity" class="w-20 h-20 rounded-full">
-        </div>
+        <div id="popularCelebrities" class="grid grid-cols-4 gap-6"></div>
     </div>
 
     <!-- Coming Soon Section -->
     <div class="mb-8">
         <h2 class="text-2xl font-bold text-red-600 mb-4">Coming soon <span class="text-yellow-400">Trailers for upcoming releases</span></h2>
-        <div class="flex justify-center space-x-4">
-            <img src="{% static 'images/PG3.png' %}" alt="Green Book" class="w-32">
-            <img src="{% static 'images/PG3.png' %}" alt="Green Book" class="w-32">
-            <img src="{% static 'images/PG3.png' %}" alt="Green Book" class="w-32">
-        </div>
+        <div id="comingSoon" class="grid grid-cols-4 gap-4"></div>
     </div>
 
     <!-- Top News Section -->
     <div class="mb-8">
         <h2 class="text-2xl font-bold text-red-600 mb-4">Top news</h2>
-        <div class="flex justify-center space-x-4">
-            <img src="{% static 'images/PG3.png' %}" alt="News" class="w-32">
-            <img src="{% static 'images/PG3.png' %}" alt="News" class="w-32">
-        </div>
+        <div id="topNews" class="grid grid-cols-4 gap-4"></div>
     </div>
 
     <!-- Social Section -->
     <div class="text-center">
         <h2 class="text-xl font-bold mb-4">Follow NN on social</h2>
-        <div class="flex justify-center space-x-6">
-            <a href="#"><img src="{% static 'images/PG3.png' %}" alt="Twitter" class="w-8"></a>
-            <a href="#"><img src="{% static 'images/PG3.png' %}" alt="Facebook" class="w-8"></a>
-            <a href="#"><img src="{% static 'images/PG3.png' %}" alt="Instagram" class="w-8"></a>
-            <a href="#"><img src="{% static 'images/PG3.png' %}" alt="YouTube" class="w-8"></a>
-        </div>
-        <button class="bg-red-600 text-white px-4 py-2 mt-4">Donate</button>
+        <button class="bg-red-600 text-white px-4 py-2 mt-4 hover:bg-red-700">Donate</button>
     </div>
 
 </div>
 
 <script>
+    // JavaScript code to dynamically generate the images
+    function createImageSection(containerId, imageCount, imgSrc) {
+        const container = document.getElementById(containerId);
+        for (let i = 0; i < imageCount; i++) {
+            const div = document.createElement('div');
+            div.className = 'group relative overflow-hidden';
+
+            const img = document.createElement('img');
+            img.src = imgSrc;
+            img.alt = `${containerId} ${i + 1}`;
+            img.className = 'w-full h-40 object-cover transition-transform duration-300 ease-in-out transform group-hover:scale-105';
+
+            div.appendChild(img);
+            container.appendChild(div);
+        }
+    }
+
+    // Call the function to generate images for each section
+    createImageSection('topPicks', 4, '{% static "images/PG3.png" %}');
+    createImageSection('popularCelebrities', 4, '{% static "images/PG1.png" %}');
+    createImageSection('comingSoon', 8, '{% static "images/PG2.png" %}');
+    createImageSection('topNews', 4, '{% static "images/PG3.png" %}');
+
+    // JavaScript for the slideshow functionality
     const movieImages = [
         "{% static 'images/PG3.png' %}",
         "{% static 'images/PG1.png' %}",
@@ -85,6 +88,23 @@
     ];
 
     let currentIndex = 0;
+
+    function changeImage() {
+        const image = document.getElementById('movieImage');
+        image.classList.add('opacity-0'); // Fade out
+
+        setTimeout(function() {
+            image.src = movieImages[currentIndex];
+            image.classList.remove('opacity-0'); // Fade in
+        }, 300); // Wait for fade-out animation
+    }
+
+    function startSlideshow() {
+        setInterval(function() {
+            currentIndex = (currentIndex + 1) % movieImages.length;
+            changeImage();
+        }, 3000); // Change image every 3 seconds
+    }
 
     document.getElementById('nextBtn').addEventListener('click', function() {
         currentIndex = (currentIndex + 1) % movieImages.length;
@@ -96,15 +116,8 @@
         changeImage();
     });
 
-    function changeImage() {
-        const image = document.getElementById('movieImage');
-        image.style.opacity = '0'; // Fade out
-
-        setTimeout(function() {
-            image.src = movieImages[currentIndex];
-            image.style.opacity = '1'; // Fade in
-        }, 300); // Wait for fade-out animation
-    }
+    // Start the slideshow when the page loads
+    startSlideshow();
 </script>
 
 {% endblock %}

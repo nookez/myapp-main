@@ -1,19 +1,32 @@
-{% extends '_base.html' %}
-
-{% block title %}Login - Movie Review{% endblock %}
-
-{% block content %}
-<h1 class="text-4xl font-bold mb-4">Login</h1>
-<form method="post">
-    {% csrf_token %}
-    <div class=" justify-center">
-        <label class="block text-lg mb-2">Username</label>
-        <input type="text" name="username" class="p-2 w-xl6 border border-gray-300 rounded">
-    </div>
-    <div class="mb-4">
-        <label class="block text-lg mb-2">Password</label>
-        <input type="password" name="password" class="p-2 w-xl6 border border-gray-300 rounded">
-    </div>
-    <button type="submit" class="bg-red-600 text-white p-2">Login</button>
-</form>
-{% endblock %}
+{% extends "_base.html" %}
+    {% block title %}
+        <title>Login</title>
+    {% endblock %}
+    {% block content %}
+    <h1 class="title has-text-centered">Login</h1>
+    <form method="post" action="form">
+        {% csrf_token %}
+        <div class="field">
+            <label class="label">Username</label>
+            <div class="control">
+                <input class="input" type="text" name="name" placeholder="Enter your Username">
+            </div>
+        </div>
+        
+        <div class="field">
+            <label class="label">Password</label>
+            <div class="control">
+                <input class="input" type="number" name="age" placeholder="Enter your Password">
+            </div>
+        </div>
+        
+        <div class="field is-grouped">
+            <div class="control">
+                <button class="button is-link" type="button">Login</button>
+            </div>
+            <div class="control">
+                <button class="button is-link is-light" type="reset">Reset</button>
+            </div>
+        </div>
+    </form>
+    {% endblock %}

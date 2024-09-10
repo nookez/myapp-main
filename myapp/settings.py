@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'myapp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'movie.db',  # ชื่อฐานข้อมูลที่คุณสร้างใน phpMyAdmin
+        'USER': 'root',       # ชื่อผู้ใช้ MySQL (ค่าเริ่มต้นคือ 'root' ใน XAMPP)
+        'PASSWORD': '',       # รหัสผ่าน MySQL (ค่าเริ่มต้นคือค่าว่างสำหรับ XAMPP)
+        'HOST': 'localhost',  # หรือ 127.0.0.1
+        'PORT': '3306',       # พอร์ตเริ่มต้นของ MySQL
     }
 }
 
